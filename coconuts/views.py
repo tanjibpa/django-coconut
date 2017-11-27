@@ -199,6 +199,7 @@ def get_video_info(filepath):
     """
     data = json.loads(subprocess.check_output([
         'avprobe', '-of', 'json', '-loglevel', 'quiet', '-show_streams', '-show_format', filepath]).decode('utf8'))
+    print(json.dumps(data))
     for stream in data['streams']:
         if stream['codec_type'] == 'video':
             info = {
