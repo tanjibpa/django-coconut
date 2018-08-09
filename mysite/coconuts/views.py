@@ -38,7 +38,7 @@ import time
 import django.views.static
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import (Http404, HttpResponse, HttpResponseBadRequest,
                          HttpResponseForbidden)
 from django.shortcuts import redirect
@@ -87,8 +87,8 @@ def auth_required(function):
     with a 401 error instead of redirecting.
     """
     def wrap(request, *args, **kwargs):
-        if request.user.is_authenticated():
-            return function(request, *args, **kwargs)
+        # if request.user.is_authenticated():
+        return function(request, *args, **kwargs)
 
         resp = HttpResponse()
         resp.status_code = 401
